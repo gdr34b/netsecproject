@@ -40,6 +40,24 @@ Alternative approaches use intrusion detection systems to discover malicious nod
 \section{Our Approach}
 In our technique, we consider that source and destination nodes can exchange the number of sent and received data packets when establishing routes through the packets sent out in the AODV protocol. Since AODV floods the network when establishing routes, a polling of the neighbors can be used to detect cases where a node is silently dropping packets or if the shortest is not a reliable route.  It could then be possible for alternative routes of similar length to be chosen instead. This general purpose approach requires a minimal alteration to the AODV protocol and does not require computationally expensive encryption, a centralized authentication source or any additional monitoring hardware.
 
+\section{Evaluation}
+In order to compare our solution to other techniques for preventing or countering wormhole attacks, we propose building a network simulation and testing various attack scenarios. That simulation, relevant scenarios, and the evaluation metric are discussed below.
+
+\subsection{Network Simulation}
+The network would be represented as a graph, with edges connecting nodes in communication range. Random nodes would be chosen to form routes using the AODV protocol, and dummy messages would then be sent one or both ways to simulate data transactions. Periodically, routes would be refreshed as per AODV's rules. Attackers attempting to execute black hole attacks would do so depending on scenarios defined in the next section. The simulation would end either after a fixed period of time or when a fixed number of messages had been sent across the network.
+
+\subsection{Attack Scenarios}
+Several scenarios would be beneficial for comparison:
+\begin{itemize}
+    \item No black holes occur. This would help test how proposed solutions affect normal network operation.
+    \item A single black hole is formed. This would show how proposed solutions work under ideal conditions.
+    \item Multiple black holes are formed. This would test what happens when the enemy has greater capabilities and can further disrupt the network.
+\end{itemize}
+Which scenarios are most relevant depends heavily on the enemy's capabilities and the type of network being deployed. Each run of the simulation would return the evaluation metric covered in the next section.
+
+\subsection{Evaluation Metric}
+Regarding black hole attacks, we take into account two main concerns for a network operator: the number of lost messages and the message complexity of any proposed solution. Suppose we denote the number of lost messages as $L$ and the message complexity as $M$. Minimizing $L$ increases availability, and minimizing $M$ decreases power usage. However, depending on the purpose of any given network and the capabilities of its nodes, one may prioritize either availability or power usage. Rather than choosing specific weights for the end user, we would choose instead to view this as a multi-objective problem. This would allow the end user to decide the relative weight of the two metrics themselves, adapting the evaluation to their particular needs.
+
 \bibliographystyle{abbrv}
 \bibliography{references}
 
