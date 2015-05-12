@@ -27,6 +27,7 @@
 \tableofcontents
 
 \pagebreak
+
 \section{Problem Statement}
 In this work, we suggest using a modified version of the AODV routing protocol to defend against black hole attacks in ad-hoc wireless networks. Ad-hoc On-Demand Distance Vector Routing (AODV) is a routing algorithm for ad-hoc networks in which routes are obtained only as needed. The algorithm's primary objectives are to broadcast discovery packets only when necessary, to distinguish between neighborhood detection and general topology maintenance, and to disseminate information about changes in local connectivity to those neighbors that are likely to need the information~\cite{749281}. In general, AODV will always select the shortest route to its destination for any given network transaction, but routing packets can be misused to enable a variety of attacks such as route disruption, node isolation or resource consumption~\cite{Ning2005795}.
 
@@ -52,17 +53,14 @@ A number of issues occur under this setup:
     \item Additional hardware for monitoring the network is unavailable.
 \end{itemize}
 
-\pagebreak
 \section{Related Work}
 A variety of methods have been used to improve the overall security of networks employing AODV routing. Some techniques introduce authentication to the message passing within the network~\cite{Hu:2005:ASO:1160100.1160103, 1181388, 806983}. While this approach is very powerful, it can dramatically increase the computational load on participating nodes and in the case of asymmetric encryption, can require a centralized source for public keys which may not be feasible for some wireless network applications.
 
 Alternative approaches use intrusion detection systems to discover malicious node behavior. Statistical methods can be used to distinguish malicious packet dropping from packet dropping that occurs as a result of network congestion~\cite{1258776}. The requirement for predicting congestion limits the usefulness of this approach when dealing with networks which exhibit sporadic and bursty traffic. Other attempts at constructing intrusion detection systems for ad-hoc networks rely on the strategic placement of additional hardware to monitor network traffic for malicious behavior~\cite{Tseng:2003:SID:986858.986876}. While the additional hardware requirements might be feasible for some applications where security is of the utmost importance, this approach is impractical for most lightweight ad-hoc networks.
 
-\pagebreak
 \section{Our Approach}
 In our technique, we consider that source and destination nodes can exchange the number of sent and received data packets when establishing routes through the packets sent out in the AODV protocol. Since AODV floods the network when establishing routes, a polling of the neighbors can be used to detect cases where a node is silently dropping packets or if the shortest is not a reliable route.  It could then be possible for alternative routes of similar length to be chosen instead. This general purpose approach requires a minimal alteration to the AODV protocol and does not require computationally expensive encryption, a centralized authentication source or any additional monitoring hardware.
 
-\pagebreak
 \section{Evaluation}
 In order to compare our solution to other techniques for preventing or countering black hole attacks, we propose building a network simulation and testing various attack scenarios. That simulation, relevant scenarios, and the evaluation metric are discussed below.
 
@@ -81,7 +79,6 @@ Which scenarios are most relevant depends heavily on the enemy's capabilities an
 \subsection{Evaluation Metric}
 Regarding black hole attacks, we take into account two main concerns for a network operator: the number of lost messages and the message complexity of any proposed solution. Suppose we denote the number of lost messages as $L$ and the message complexity as $M$. Minimizing $L$ increases availability, and minimizing $M$ decreases power usage. However, depending on the purpose of any given network and the capabilities of its nodes, one may prioritize either availability or power usage. Rather than choosing specific weights for the end user, we would choose instead to view this as a multi-objective problem. This would allow the end user to decide the relative weight of the two metrics themselves, adapting the evaluation to their particular needs.
 
-\pagebreak
 \section{Future Work}
 Our next steps would include actually implementing the suggested network simulation, measuring the performance of our solution against other solutions, and testing several attack scenarios. Besides that, it would be useful to see if the time to detect black holes could be reduced without sacrificing message complexity. Our current method can only detect lost messages when refreshing routes, which may be an issue depending on how often that occurs. It would be interesting to see if message dropping could be detected more effectively either with a separate message stream or a higher route refresh rate, as well as which one would be better for battery power.
 
